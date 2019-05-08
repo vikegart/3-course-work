@@ -334,178 +334,219 @@ bot.on('poll-error', error => {
 каждой команды с входным сообщением. И если регулярное выражение проходит (результат true),
 то бот исполняет нужную команду и передаёт свой ответ на отправку.
 
-Данный паттерн называется "Стратегия" и очень сильно экономит ресуры и облегчает добваление новых команд.
+Данный паттерн называется "Стратегия" и очень сильно экономит ресуры и облегчает
+добваление новых команд. \cite{Stoyan}
 
-Маршрутов четыре --- в приложении четыре страницы:
-
-\begin{itemize}
-\item Поиск встречи.
-\item Создание встречи.
-\item О приложении.
-\item Просмотр конкретной встречи.
-\end {itemize}
+Теперь реализуем действие на событие "новое сообщение" - для этого напишем в функции "on.message"
+указанный сверху цикл. И добавим fallback - сообщение, которое отправится, если никакая команда не сработает.
 
 \begin{lstlisting}
-import Vue from 'vue'
-import App from './components/App.vue'
-import VueRouter from 'vue-router'
-import Vuetify from 'vuetify'
-import './stylus/main.styl'
-import VueResource from 'vue-resource'
-
-import FindEvent from './components/pages/FindEvent.vue'
-import CreateEvent from './components/pages/CreateEvent.vue'
-import Event from './components/pages/Event.vue'
-import About from './components/pages/About.vue'
-
-Vue.use(Vuetify);
-Vue.use(VueRouter);
-Vue.use(VueResource);
-
-let router = new VueRouter({
-    routes: [
-        {
-            name: 'find',
-            path: '/',
-            components: { default: FindEvent }
-        }, {
-            name: 'create',
-            path: '/create',
-            components: { default: CreateEvent }
-        }, {
-            name: 'event',
-            path: '/event/:id',
-            components: { default: Event}
-        }, {
-            name: 'about',
-            path: '/about',
-            components: {default: About}
+  bot.get(/./, message => {
+    if (message.peer_id > 1000000000) { //message from conversation
+        if (!regName.test(message.text)) { //if no name calling - no answeer
+            return;
         }
-    ]
-});
-
-new Vue({
-    el: '#app',
-    router: router,
-    render: h => h(App)
-});
-\end{lstlisting}
-
-После создадим компоненты --- главный компонент --- App, в который встроим четыре основных - на каждую страницу \cite{Components}.
-
-Компонент App.vue, в котором будет отображаться боковое меню и верхнее содержимое, а также отображаться кнопка прокрутки вверх, когда пользователь прокручивает контент вниз.
-В соответствии с концепцией Vue --- содержимое данного компонента будет доступно конечному пользователю на любом экране.
-
-\begin{lstlisting}
-<template>
-  <v-app id="inspire" v-scroll="onScroll">
-    <v-navigation-drawer
-      fixed
-      v-model="drawer"
-      app
-    >
-      <v-list dense>
-        <v-list-tile @click="switchPage('/')">
-          <v-list-tile-action>
-            <v-icon>place</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Найти встерчу</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="switchPage('/create')">
-          <v-list-tile-action>
-            <v-icon>edit</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Создать встречу</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="switchPage('/about')">
-          <v-list-tile-action>
-            <v-icon>help</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>О проекте</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Meet&Greet</v-toolbar-title>
-    </v-toolbar>
-
-    <main>
-      <v-content>
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
-      </v-content>
-    </main>
-
-    <v-fab-transition>
-      <v-btn style="bottom: 30px"
-             absolute
-             dark
-             fab
-             fixed
-             bottom
-             right
-             v-show="showBtnUp"
-             class='indigo'
-             v-on:click="scrollToTop"
-      >
-        <v-icon>keyboard_arrow_up</v-icon>
-      </v-btn>
-    </v-fab-transition>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; course project. 2018</span>
-    </v-footer>
-  </v-app>
-</template>
-
-<script>
-  export default {
-    data: () => ({
-      drawer: null,
-      showBtnUp: false,
-      offsetTop: 0,
-    }),
-    methods: {
-      scrollToTop: function () {
-        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-      },
-      onScroll (e) {
-        this.offsetTop = window.pageYOffset;
-        if (this.offsetTop>=280){
-          this.showBtnUp = true
-        }
-        else this.showBtnUp = false
-      },
-      switchPage: function(link) {
-        scrollTo(0,0);
-        this.$root.$router.push({ path: link });
-      },
     }
-  }
-</script>
+    bot.api('messages.setActivity', { type: 'typing', peer_id: message.peer_id, group_id: TOKENS.groupId })
+        .then(res => console.log(util.inspect(res)));
+
+    message.text = message.text.replace(regName, ''); //delete him name
+
+    for (let skillName in skillList) {
+        const regExp = RegExp(skillName, 'i');
+        if (regExp.test(message.text)) {
+            console.log('matched: ' + skillName);
+            skillList[skillName](bot, message, TOKENS);
+            return;
+        }
+    }
+
+  })
+
+
 \end{lstlisting}
 
-После были созданы страничных компоненты, которые будут вложены в главный компонент --- App.
+На 7-8 строчках утсанавливаем статус "набирает сообщение" --- что придаст
+боту больше человечности и будет понятно, что он получил сообщение и готовиться на него ответить.
 
-С помощью 
+Со 2 по 6 строки, проверяем, обращались ли к нему по имени, потому что данная функция будет
+вызываться при любом сообщении из беседы, даже тогда, когда от бота ничего не требуется.
 
-<style src="../css/Events.css"></style>
 
-есть возможность подключения таблиц стилей в конкретный компонент.
+Ниже приведены три необходимых "навыка" бота для достижения цели этой работы.
 
-С помощью команды npm build --- скомпилируем клиентскую часть, в особом режиме --- production mode. Данная команда собирает все скрипты в один файл и оптимизирует их, удаляя лишние символы и обфусифицирует код --- заменяет понятные программисту переменные вроде showButton на ab, тем самым защищая код от неправомерного использования \cite{Webpack}.
+Для призыва всех людей в беседу:
+\begin{lstlisting}
+  const mentionAll = {
+    callName: 'позови всех',
+    action: (bot, message, TOKENS) => {
+        bot.api('messages.getConversationMembers', { peer_id: message.peer_id, group_id: TOKENS.groupId })
+            .then(res => {
+                //const usersNamesOrIds = res.profiles.map(profile => profile.screen_name != '' ? profile.screen_name : profile.id );
+                //console.log(util.inspect(usersNamesOrIds));
+                const mentionIds = res.profiles.map(profile => `@id${profile.id}`);
+                bot.send('я призываю всех ' + `${mentionIds.toString()}`, message.peer_id).catch(
+                    function (e) {
+                        console.log(e);
+                    }
+                );
+            })
+            .catch(
+                function (e) {
+                    console.log(e);
+                }
+            );
+    }
+}
 
+module.exports = mentionAll;
+\end{lstlisting}
+
+Для расылки всем объвления:
+\begin{lstlisting}
+  const sendMessageAll = {
+    callName: 'об[ъь]явление',
+    action: (bot, message, TOKENS) => {
+        const alertMessage = message.text
+                .split(/об[ъь]явление/i, 2)[1]
+                .trim();
+            bot.api('messages.getConversationMembers', { peer_id: message.peer_id, group_id: TOKENS.groupId })
+                .then(res => {
+                    const mentionIds = res.profiles.map(profile => `@id${profile.id}`);
+                    bot.send(`сообщение для всех: ${alertMessage} ${mentionIds.toString()}`, message.peer_id).catch(
+                        function (e) {
+                            console.log(e);
+                        }
+                    );
+                })
+                .catch(
+                    function (e) {
+                        console.log(e);
+                    }
+                );
+    }
+}
+
+module.exports = sendMessageAll;
+\end{lstlisting}
+
+Для определения числитель или знаменатель:
+\begin{lstlisting}
+      
+const chislOrZnam = require('./logic');
+
+const weekPair = {
+    callName: 'какая неделя|неделя какая',
+    action: (bot, message) => {
+        let d = new Date();
+        d.setHours(d.getHours() + 1); //for GMT+4
+        
+        let parity = 'сейчас ' + chislOrZnam(d);
+        
+        if (/завтра/i.test(message.text)) {
+            d.setDate(d.getDate() + 1);
+            parity = 'завтра ' + chislOrZnam(d);
+        }
+        if (/следующая/i.test(message.text)) {
+            d.setDate(d.getDate() + 7);
+            parity = 'следующая неделя ' + chislOrZnam(d);
+        }
+        bot.send(parity, message.peer_id).catch(
+            function (e) {
+                console.log(e);
+            }
+        );
+    }
+}
+
+module.exports = weekPair;
+\end{lstlisting}
+
+Логика опредения числителя и знаменателя: 
+\begin{lstlisting}
+  const chislOrZnamen = (date) => {
+    let now = new Date();
+    if (date) {
+        now = date;
+    }
+    //изначально считаем что сейчас числитель
+    //true - числитель
+    //false - знаменатель
+    
+    const dayFirstOfSeptember = (new Date(now.getFullYear(), 8, 1)).getDay();
+    const dateFirstMondayInSeptember = (dayFirstOfSeptember == 2) ? 7 : (9 - dayFirstOfSeptember) % 7;
+    
+    const dayFirstOfJanuary = (new Date(now.getFullYear(), 0, 1)).getDay();
+    const dateFirstMondayInJanuary = (dayFirstOfJanuary == 2) ? 7 : (9 - dayFirstOfJanuary) % 7;
+    
+    const currentDate = now.getDate();
+    const currentMonth = now.getMonth();
+    
+    const countFullWeeksBeforeNY = Math.floor((now.getTime() - new Date(now.getFullYear(), 8, dateFirstMondayInSeptember).getTime()) / 86400000 / 7);
+    const countFullWeeksAfterNY = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, dateFirstMondayInJanuary).getTime()) / 86400000 / 7);
+    
+    if (currentMonth > 8 && countFullWeeksBeforeNY % 2 != 0) {
+        return 'числитель'
+    }
+    else if (currentMonth == 8) {
+        if (currentDate >= dateFirstMondayInSeptember && countFullWeeksBeforeNY % 2 != 0) {
+            return 'числитель'
+        }
+        else if (currentDate < dateFirstMondayInSeptember) {
+            return 'числитель'
+        }
+    }
+    else if (currentMonth < 8) {
+        if (currentMonth <= 4 && currentMonth >= 0) {
+            if ((currentMonth == 0) && (currentDate < dateFirstMondayInJanuary)) {
+                if (dayFirstOfSeptember == 0 || dayFirstOfSeptember > 4) {
+                    return 'числитель'
+                }
+            }
+            else if (countFullWeeksAfterNY % 2 == 0) {
+                return 'знаменатель'
+            }
+        }
+        else if (currentMonth > 4) {
+            console.log('сейчас лето, ты чего');
+        }
+    }
+    return 'числитель'
+}
+
+module.exports = chislOrZnamen;
+\end{lstlisting}
 
 
 \subsection {Развертка приложения на сервере}
-Запустим команду gradle build \cite{Gradle}.
+
+Далее необходимо подключиться к серверу по SSH и
+склонировать туда репозиторий проекта, установить все пакеты и запустить.
+
+Установим библиотеку PM2  глобально с помощью менеджера пакетов NPM:
+
+\begin{lstlisting}
+  npm i pm2 -g
+\end{lstlisting}
+
+Далее, запустим бота командой: 
+
+\begin{lstlisting}
+  pm2 start konnor.js
+\end{lstlisting}
+
+Теперь, терминал можно зыкрывать - бот запущен и работет.
+
+
+Для того, чтобы смотреть логи, нужно использовать команду:
+
+\begin{lstlisting}
+  pm2 logs konnor
+\end{lstlisting}
+
+
+
+
 Она соберет все зависимости для backend части, а также уже собранную клиентскую часть в один файл-пакет meetAndGreet-0.0.1-SNAPSHOT.jar.
 
 После этого, необходимо запустить файл, для убеждения в том, что приложение работает. Запускается оно с помощью команды (разработка ведется под ОС Windows, поэтому команда именно такая).
@@ -556,6 +597,7 @@ https://github.com/vikegart/meetAndGreet
   \bibitem{LongPoll} Bots Long Poll API [Электронный ресурс]: URL: https://vk.com/dev/bots\_longpoll (Дата обращения: 18.02.2019) Загл. с экрана. Яз. англ;
   \bibitem{VKBots} API для чат-ботов [Электронный ресурс]: URL: https://vk.com/dev/bots\_docs (Дата обращения: 18.02.2019) Загл. с экрана. Яз. англ;
   \bibitem{Gang} Приемы объектно-ориентированного проектирования. Паттерны проектирования.  Влиссидес Джон , Джонсон Р. , Хелм Ричард , Гамма Эрих Яз. англ стр [50-120];
+  \bibitem{Stoyan} JavaScript. Шаблоны . Стоян Стефанов Яз. рус. стр [70-90];
 \end{thebibliography}
 
 

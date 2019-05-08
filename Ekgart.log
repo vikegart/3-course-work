@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.7)  8 MAY 2019 20:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.7)  8 MAY 2019 20:58
 entering extended mode
 **"c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Ekgart.tex"
 ("c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Ekgart.tex"
@@ -776,85 +776,71 @@ LaTeX Font Warning: Font shape `OMS/ftm/m/n' undefined
 LaTeX Font Warning: Font shape `T2A/ftm/m/it' undefined
 (Font)              using `T2A/ftm/m/n' instead on input line 288.
 
-[9] [10]
-
-LaTeX Warning: Citation `Components' on page 11 undefined on input line 394.
-
-[11] [12] [13]
-
-LaTeX Warning: Citation `Webpack' on page 14 undefined on input line 503.
-
-
-LaTeX Warning: Citation `Gradle' on page 14 undefined on input line 508.
-
-[14]
-<PC.png, id=326, 963.6pt x 465.23813pt>
+[9] [10] [11] [12] [13] [14] [15]
+<PC.png, id=352, 963.6pt x 465.23813pt>
 File: PC.png Graphic file (type png)
 <use PC.png>
-Package pdftex.def Info: PC.png  used on input line 535.
+Package pdftex.def Info: PC.png  used on input line 576.
 (pdftex.def)             Requested size: 483.69687pt x 233.53426pt.
-<Mobile.png, id=327, 198.7425pt x 399.99437pt>
+<Mobile.png, id=353, 198.7425pt x 399.99437pt>
 File: Mobile.png Graphic file (type png)
 <use Mobile.png>
-Package pdftex.def Info: Mobile.png  used on input line 541.
+Package pdftex.def Info: Mobile.png  used on input line 582.
 (pdftex.def)             Requested size: 154.78653pt x 311.53659pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15 <c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/PC.png>] [16 <c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Mobile.png>] [17
+[16 <c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/PC.png>] [17 <c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Mobile.png>] [18
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 556--557
+Underfull \hbox (badness 10000) in paragraph at lines 597--598
 []\T2A/ftm/bx/n/14.4 Bots Long Poll API [Элек-трон-ный ре-сурс]: URL:
  []
 
 
-Underfull \hbox (badness 5622) in paragraph at lines 556--557
+Underfull \hbox (badness 5622) in paragraph at lines 597--598
 \T2A/ftm/bx/n/14.4 https://vk.com/dev/bots_longpoll (Да-та об-ра-ще-ния: 18.02.2019) За-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 557--558
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
 []\T2A/ftm/bx/n/14.4 API для чат-ботов [Элек-трон-ный ре-сурс]: URL:
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 557--558
+Underfull \hbox (badness 2418) in paragraph at lines 598--599
 \T2A/ftm/bx/n/14.4 https://vk.com/dev/bots_docs (Да-та об-ра-ще-ния: 18.02.2019) За-гл. с
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 562.
-[18
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 604.
+[19
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 562.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 604.
  ("c:/Users\Vikentii_Ekgart\Documents\РЈРЅРёРІРµСЂ\course work СѓРЅРёРІРµСЂ\Ekgart.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 562.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 562.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 604.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 604.
 Package rerunfilecheck Info: File `Ekgart.out' has not changed.
 (rerunfilecheck)             Checksum: 36B2C0396B413E1251D27D4A8FCEF368;2197.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 562.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 604.
  ) 
 Here is how much of TeX's memory you used:
- 15507 strings out of 492895
- 217557 string characters out of 3133450
- 618725 words of memory out of 3000000
- 18985 multiletter control sequences out of 15000+200000
+ 15484 strings out of 492895
+ 217608 string characters out of 3133450
+ 608753 words of memory out of 3000000
+ 18940 multiletter control sequences out of 15000+200000
  13296 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,6n,58p,826b,1873s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Vikentii_Ekgart\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\Vikentii_Ekgart\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0600.pk> <C:\Users\Vikentii_Ekgart\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "c:/Users\Vikentii_Ekgart\Documents\РЈРЅРёРІРµСЂ\course work СѓРЅРёРІРµСЂ\Ekgart.pdf" (18 pages, 1084720 bytes).
+Output written on "c:/Users\Vikentii_Ekgart\Documents\РЈРЅРёРІРµСЂ\course work СѓРЅРёРІРµСЂ\Ekgart.pdf" (19 pages, 1092749 bytes).
 PDF statistics:
- 677 PDF objects out of 1000 (max. 8388607)
- 241 named destinations out of 1000 (max. 500000)
+ 709 PDF objects out of 1000 (max. 8388607)
+ 263 named destinations out of 1000 (max. 500000)
  83 words of extra memory for PDF output out of 10000 (max. 10000000)
 
