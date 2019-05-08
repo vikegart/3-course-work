@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.7)  8 MAY 2019 19:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.7)  8 MAY 2019 19:41
 entering extended mode
 **"c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Ekgart.tex"
 ("c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Ekgart.tex"
@@ -769,33 +769,28 @@ LaTeX Font Info:    No file OMSftm.fd. on input line 230.
 LaTeX Font Warning: Font shape `OMS/ftm/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead on input line 230.
 
-[7]
-Overfull \hbox (14.4499pt too wide) in paragraph at lines 236--237
-[]\T2A/ftm/bx/n/14.4 С по-мо-щью CLI (command line interface) бы-ла со-зда-на ди-рек-то-рия frontend
- []
-
-[8
+[7] [8
 
 ]
 
-LaTeX Warning: Citation `Webpack' on page 9 undefined on input line 307.
+LaTeX Warning: Citation `Webpack' on page 9 undefined on input line 309.
 
 [9] [10]
 
-LaTeX Warning: Citation `Components' on page 11 undefined on input line 366.
+LaTeX Warning: Citation `Components' on page 11 undefined on input line 368.
 
 [11] [12]
 
-LaTeX Warning: Citation `Webpack' on page 13 undefined on input line 475.
+LaTeX Warning: Citation `Webpack' on page 13 undefined on input line 477.
 
 [13]
 
-LaTeX Warning: Citation `Gradle' on page 14 undefined on input line 480.
+LaTeX Warning: Citation `Gradle' on page 14 undefined on input line 482.
 
 <PC.png, id=324, 963.6pt x 465.23813pt>
 File: PC.png Graphic file (type png)
 <use PC.png>
-Package pdftex.def Info: PC.png  used on input line 507.
+Package pdftex.def Info: PC.png  used on input line 509.
 (pdftex.def)             Requested size: 483.69687pt x 233.53426pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -803,7 +798,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <Mobile.png, id=325, 198.7425pt x 399.99437pt>
 File: Mobile.png Graphic file (type png)
 <use Mobile.png>
-Package pdftex.def Info: Mobile.png  used on input line 513.
+Package pdftex.def Info: Mobile.png  used on input line 515.
 (pdftex.def)             Requested size: 154.78653pt x 311.53659pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -811,33 +806,33 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [14] [15 <c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/PC.png> <c:/Users/Vikentii_Ekgart/Documents/РЈРЅРёРІРµСЂ/course work СѓРЅРёРІРµСЂ/Mobile.png>] [16
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 528--529
+Underfull \hbox (badness 10000) in paragraph at lines 530--531
 []\T2A/ftm/bx/n/14.4 Bots Long Poll API [Элек-трон-ный ре-сурс]: URL:
  []
 
 
-Underfull \hbox (badness 5622) in paragraph at lines 528--529
+Underfull \hbox (badness 5622) in paragraph at lines 530--531
 \T2A/ftm/bx/n/14.4 https://vk.com/dev/bots_longpoll (Да-та об-ра-ще-ния: 18.02.2019) За-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--530
+Underfull \hbox (badness 10000) in paragraph at lines 531--532
 []\T2A/ftm/bx/n/14.4 API для чат-ботов [Элек-трон-ный ре-сурс]: URL:
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 529--530
+Underfull \hbox (badness 2418) in paragraph at lines 531--532
 \T2A/ftm/bx/n/14.4 https://vk.com/dev/bots_docs (Да-та об-ра-ще-ния: 18.02.2019) За-гл. с
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 533.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 535.
 [17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 533.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 535.
  ("c:/Users\Vikentii_Ekgart\Documents\РЈРЅРёРІРµСЂ\course work СѓРЅРёРІРµСЂ\Ekgart.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 533.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 533.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 535.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 535.
 Package rerunfilecheck Info: File `Ekgart.out' has not changed.
 (rerunfilecheck)             Checksum: 36B2C0396B413E1251D27D4A8FCEF368;2197.
 
@@ -847,18 +842,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 533.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 535.
  ) 
 Here is how much of TeX's memory you used:
  15432 strings out of 492895
  216724 string characters out of 3133450
- 601699 words of memory out of 3000000
+ 604699 words of memory out of 3000000
  18906 multiletter control sequences out of 15000+200000
  13296 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,6n,58p,826b,1976s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Vikentii_Ekgart\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\Vikentii_Ekgart\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0600.pk> <C:\Users\Vikentii_Ekgart\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "c:/Users\Vikentii_Ekgart\Documents\РЈРЅРёРІРµСЂ\course work СѓРЅРёРІРµСЂ\Ekgart.pdf" (17 pages, 1082238 bytes).
+Output written on "c:/Users\Vikentii_Ekgart\Documents\РЈРЅРёРІРµСЂ\course work СѓРЅРёРІРµСЂ\Ekgart.pdf" (17 pages, 1082330 bytes).
 PDF statistics:
  674 PDF objects out of 1000 (max. 8388607)
  245 named destinations out of 1000 (max. 500000)
