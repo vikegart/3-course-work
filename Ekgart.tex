@@ -1,0 +1,533 @@
+\documentclass[bachelor, och, coursework, times]{SCWorks}
+% параметр - тип обучения - одно из значений:
+%    spec     - специальность
+%    bachelor - бакалавриат (по умолчанию)
+%    master   - магистратура
+% параметр - форма обучения - одно из значений:
+%    och   - очное (по умолчанию)
+%    zaoch - заочное
+% параметр - тип работы - одно из значений:
+%    referat    - реферат
+%    coursework - курсовая работа (по умолчанию)
+%    diploma    - дипломная работа
+%    pract      - отчет по практике
+% параметр - включение шрифта
+%    times    - включение шрифта Times New Roman (если установлен)
+%               по умолчанию выключен
+\usepackage{listings}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage{graphicx}
+\usepackage[sort,compress]{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{longtable}
+\usepackage{floatflt}
+\usepackage{array}
+\usepackage[english,russian]{babel}
+
+
+\usepackage[colorlinks=true]{hyperref}
+
+
+
+
+
+\begin{document}
+
+\lstset{ 
+language=C++, 
+basicstyle=\small, 
+numbers=left, 
+numberstyle=\tiny,
+stepnumber=1, 
+numbersep=5pt, 
+%backgroundcolor=\color{white}, % ???? ???? ????????? - ?????????? \usepackage{color}
+showspaces=false, % ?????????? ??? ??? ??????? ???????????? ?????????
+showstringspaces=false, % ?????????? ??? ??? ??????? ? ???????
+showtabs=false, % ?????????? ??? ??? ????????? ? ???????
+frame=single, % ???????? ????? ?????? ????
+tabsize=2, % ?????? ????????? ?? ????????? ????? 2 ????????
+captionpos=t, % ??????? ????????? ?????? [t] ??? ????? [b] 
+breaklines=true, % ????????????? ?????????? ?????? (??\???)
+breakatwhitespace=false, % ?????????? ?????? ?????? ???? ???? ??????
+escapeinside={\%*}{*)} % ???? ????? ???????? ??????????? ? ????
+}
+
+% Кафедра (в родительном падеже)
+\chair{дискретной математики и информационных технологий}
+
+% Тема работы
+\worktitle{ RK серии ''Коннор'' для для помощи в расследовании дел, связанных с девиантными андроидами }
+
+% Курс
+\course{3}
+
+% Группа
+\group{321}
+
+% Факультет (в родительном падеже) (по умолчанию "факультета КНиИТ")
+%\department{механико"=математического факультета}
+
+% Специальность/направление код - наименование
+%\napravlenie{010300 "--- Фундаментальная информатика и информационные технологии}
+%\napravlenie{010500 "--- Математическое обеспечение и администрирование информационных систем}
+%\napravlenie{230100 "--- Информатика и вычислительная техника}
+%\napravlenie{231000 "--- Программная инженерия}
+\napravlenie{09.03.01 "--- Информатика и вычислительная техника}
+
+% Для студентки. Для работы студента следующая команда не нужна.
+%\studenttitle{Студентки}
+
+% Фамилия, имя, отчество студента(ки) в родительном падеже
+\studentName{Экгарт Викентия Александровича}
+
+% Заведующий кафедрой
+\chtitle{к.ф.-м.н. доцент} % степень, звание
+\chname{Л.Б. Тяпаев}  % Инициалы и фамилия
+
+%Научный руководитель (для реферата преподаватель проверяющий работу)
+\satitle{ассистент} %должность, степень, звание
+\saname{П.П. Поздняков}  % Инициалы и фамилия
+
+% Руководитель практики от организации (только для практики,
+% для остальных типов работ не используется)
+\patitle{} %должность, степень, звание
+\paname{}  % Инициалы и фамилия
+
+% Семестр (только для практики, для остальных
+% типов работ не используется)
+\term{} % номер
+
+% Наименование практики (только для практики, для остальных
+% типов работ не используется)
+\practtype{}
+
+% Продолжительность практики (количество недель) (только для практики,
+% для остальных типов работ не используется)
+\duration{} % число недель
+
+% Даты начала и окончания практики (только для практики, для остальных
+% типов работ не используется)
+\practStart{}  % в формате ДД.ММ.ГГГГ
+\practFinish{} % в формате ДД.ММ.ГГГГ
+
+% Год выполнения отчета
+\year{2019}  % в формате ГГГГ
+
+\MakeTitle
+
+
+\tableofcontents
+
+% Раздел "Введение"
+\intro
+
+Целью данной курсовой работы является разработка чат-бота, работающего с API социальной сети "Вконтакте" для помощи
+старосте в оповещении студентов о различных мероприятиях и прочих объявлениях, 
+а также для мгновенного получения акутальной информации о порядке текущей недели в расписании,
+без необходимости ручного высчитывания или обращения к сторонним ресурсам.
+Данная социальная сеть была выбрана, поскольку количество пользователей (в том числе и студентов ВУЗа) в ней максимально,
+в отличае от других социальных сетей. Также, данная социальная сеть полностью поддерживает законодательство РФ.
+%принудительный перенос, ибо латех почему-то не перенс
+В работе будет рассмотрен полный путь от знакомста с API социальной сети и, до конечного запуска бота на сервере.
+
+Для достижения поставленной цели необходимо решить следующие задачи: 
+\begin {enumerate}
+	\item Дать определение понятию <<API>>.
+	\item Ознакомиться с официальной документацией API от выбранной социальной сети.
+	\item Выбрать технологии для решения поставленной задачи.
+	\item Разработать чат-бота.
+\end {enumerate}
+%TODO - убрать личные местоимения
+\section{Понятие <<API>>}
+API --- application programming interface, по русски - программный интерфейс приложения,
+Т.е. это описание способов (набор определенных "открытых" методов с парамаетрами, констант для изменения)
+которыми одно компьютерное программное обеспечение может взаимодействовать с другим компьютерным ПО. При этом, как правило, 
+при хорошем проектировании API, не имеет значения на каком языке будет написана программа, которая будет обращаться к этому API. Так, например,
+программа написанная на C++ может работать с API программы, написанной на Java.
+
+\section{Ознакомление с официальной документацией API Вконтакте}
+Итак, документация данной социальной сети находится по слудующему адресу
+\href{https://vk.com/dev/manuals}{https://vk.com/dev/manuals}.
+
+Для решения поставленной задачи, заходим в раздел с чат ботами, 
+и видим, что для взаимодействия бота и сервера социальной сети предусмотрено два способа общения "клиент-сервер":
+
+\begin{itemize}
+  \item Callback API.
+  \item Long Poll API.
+\end{itemize}
+
+Callback API --- согласно официальной документации,
+работает следующим образом - как только в сообществе происходит нужное событие - от сервера
+Вконтакте приходит уведомление на наш сервер. При этом, событие может быть каким угодно: комментарий к фотографии, новая запись на стене,
+вступление в сообщество, отправка сообщения, и многое другое. \cite{VKBots}.
+
+Второй способ получения обновлений --- это подключение к Long Poll серверу.
+В отличие от Callback API, Long Poll сервер будет присылать на наш сервер только те обновления,
+которые связаны с сообщениями. Никаких других событий из сообщества в нём нет. 
+То есть, узнать о том, присоединился ли пользователь к сообществу - нельзя.
+
+Исходя из поставленной задачи, а также из-за некоторых преимуществ в скорости Long Poll API над обычным \cite{LongPoll}, принято решение использовать Long Poll API.
+
+Теперь необходимо создать сообщество в Вконтакте, от имени которого будет писать чат бот.
+
+\section{Выбор технологии для решения поставленной задачи}
+Выбранный мною функционал чат-бота предполагает следующий сценарий использования :
+Создатель беседы (беседа - чат между несколькими пользователями) или любой другой её участник добавлеят бота в беседу.
+Далее администатор беседы открывает боту доступ ко всем сообщениям в ней и делает бота администратором 
+(необходимо для работы функции "позови всех")
+
+После этого доступны следующие команды боту :
+\begin{itemize}
+  \item какая неделя [сейчас, завтра, следующая]
+  \item позови всех
+  \item объявление
+  \item инфо, помощь, что ты умеешь
+\end{itemize}
+
+Первая команда должна вернуть информацию о том,
+какая сейчас (или иная, зависит от запроса пользователя) неделя.
+Например, бот может ответить "сейчас числитель",
+что означает что в данный момент актуальны пары из верхних ячеек расписания.
+
+Вторая команда "позови всех" отправляет каждому пользователю уведомление,
+даже если уведомления у этого пользователя отключены. Полезно, так как многие пользователи в виду
+частых и неинфрмативных сообщени (флуд) отключают уведомления из беседы и могут пропустить что-то важное.
+
+Третья команда "объявление" --- отправляет каждому пользователю уведомление с текстом, идущем после этой команды.
+Работет даже если уведомления у этого пользователя отключены. Как в случае и с предидущим пунктом,
+защищает пользователей от несвоевременного информирования при отключенных уведомлениях.
+
+Последняя команда выводит информацию о доступных командах на данный момент.
+
+Для достижения такого механизма работы мной были выбраны следующие технологии:
+\begin{enumerate}
+ 
+  \item enviroment.
+  \begin {itemize}
+	\item Node JS. (серверный интрператор JS)
+	\item PM2. (перезапуск процесса в случае ошибки, а также более продвинутое логирование)
+  \end {itemize}
+  \item bot.
+  \begin {itemize} 
+  	\item NPM (пакетный менеджер для работы с зависимостями).
+  	\item vk-node-sdk (библиотека для взаимодействием с LongPoll API).
+  	\item util (библиотека для логирования ошибок)
+  	\item JavaScript (язык программирования).
+  \end {itemize}
+  \item Сервер.
+  \begin {itemize}
+	\item Ubuntu 17.10 64bit (512 МБ RAM 20 ГБ SSD 1 CPU).
+  \end {itemize} 
+\end{enumerate}
+
+Посльку не требуется хранить какие-либо данные, полученные от пользователя, база данных не учавствует в проекте.
+
+В качестве IDE была использована VS Code от \copyright Microsoft.
+Данная IDE имеет встроенную поддержку JavaScript, системы контроля версий, а также распространяется бесплатно.
+\section {Разработка чат бота}
+Разработка велась в три этапа --- программирование и создание серверной части - самого бота,
+загрузка проекта на сервер и ручное тестирование функционала.
+\subsection {frontend}
+С помощью CLI (command line interface) была создана директория frontend и далее была введена команда `npm init` , которая создает конфигурационный файл трбуемого приложения.
+
+\begin{lstlisting}
+{
+  "name": "meet",
+  "version": "1.0.0",
+  "description": "meetings in Saratov",
+  "author": "vikegart <vikegart@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "moment": "^2.20.1",
+    "vue": "^2.5.3",
+    "vue-resource": "^1.3.4",
+    "vue-router": "^3.0.1",
+    "vuetify": "^0.17.3",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-add-filehash": "^6.9.4",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.22.0",
+    "chalk": "^2.0.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.0",
+    "eventsource-polyfill": "^0.9.6",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.4",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "node-notifier": "^5.1.2",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.8",
+    "semver": "^5.3.0",
+    "shelljs": "^0.7.6",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "ora": "^1.2.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "rimraf": "^2.6.0",
+    "url-loader": "^0.5.8",
+    "vue-loader": "^13.3.0",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.5.3",
+    "portfinder": "^1.0.13",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.1.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
+\end{lstlisting}
+
+Для запуска клиентской части требуется ввести в консоль команду npm start\cite{Webpack}.
+
+Далее, был создан главный js файл --- точка входа в SPA приложение, в котором необходимо настроить маршруты --- routings.
+
+Маршрутов четыре --- в приложении четыре страницы:
+
+\begin{itemize}
+\item Поиск встречи.
+\item Создание встречи.
+\item О приложении.
+\item Просмотр конкретной встречи.
+\end {itemize}
+
+\begin{lstlisting}
+import Vue from 'vue'
+import App from './components/App.vue'
+import VueRouter from 'vue-router'
+import Vuetify from 'vuetify'
+import './stylus/main.styl'
+import VueResource from 'vue-resource'
+
+import FindEvent from './components/pages/FindEvent.vue'
+import CreateEvent from './components/pages/CreateEvent.vue'
+import Event from './components/pages/Event.vue'
+import About from './components/pages/About.vue'
+
+Vue.use(Vuetify);
+Vue.use(VueRouter);
+Vue.use(VueResource);
+
+let router = new VueRouter({
+    routes: [
+        {
+            name: 'find',
+            path: '/',
+            components: { default: FindEvent }
+        }, {
+            name: 'create',
+            path: '/create',
+            components: { default: CreateEvent }
+        }, {
+            name: 'event',
+            path: '/event/:id',
+            components: { default: Event}
+        }, {
+            name: 'about',
+            path: '/about',
+            components: {default: About}
+        }
+    ]
+});
+
+new Vue({
+    el: '#app',
+    router: router,
+    render: h => h(App)
+});
+\end{lstlisting}
+
+После создадим компоненты --- главный компонент --- App, в который встроим четыре основных - на каждую страницу \cite{Components}.
+
+Компонент App.vue, в котором будет отображаться боковое меню и верхнее содержимое, а также отображаться кнопка прокрутки вверх, когда пользователь прокручивает контент вниз.
+В соответствии с концепцией Vue --- содержимое данного компонента будет доступно конечному пользователю на любом экране.
+
+\begin{lstlisting}
+<template>
+  <v-app id="inspire" v-scroll="onScroll">
+    <v-navigation-drawer
+      fixed
+      v-model="drawer"
+      app
+    >
+      <v-list dense>
+        <v-list-tile @click="switchPage('/')">
+          <v-list-tile-action>
+            <v-icon>place</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Найти встерчу</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="switchPage('/create')">
+          <v-list-tile-action>
+            <v-icon>edit</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Создать встречу</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="switchPage('/about')">
+          <v-list-tile-action>
+            <v-icon>help</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>О проекте</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar color="indigo" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Meet&Greet</v-toolbar-title>
+    </v-toolbar>
+
+    <main>
+      <v-content>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </v-content>
+    </main>
+
+    <v-fab-transition>
+      <v-btn style="bottom: 30px"
+             absolute
+             dark
+             fab
+             fixed
+             bottom
+             right
+             v-show="showBtnUp"
+             class='indigo'
+             v-on:click="scrollToTop"
+      >
+        <v-icon>keyboard_arrow_up</v-icon>
+      </v-btn>
+    </v-fab-transition>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; course project. 2018</span>
+    </v-footer>
+  </v-app>
+</template>
+
+<script>
+  export default {
+    data: () => ({
+      drawer: null,
+      showBtnUp: false,
+      offsetTop: 0,
+    }),
+    methods: {
+      scrollToTop: function () {
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      },
+      onScroll (e) {
+        this.offsetTop = window.pageYOffset;
+        if (this.offsetTop>=280){
+          this.showBtnUp = true
+        }
+        else this.showBtnUp = false
+      },
+      switchPage: function(link) {
+        scrollTo(0,0);
+        this.$root.$router.push({ path: link });
+      },
+    }
+  }
+</script>
+\end{lstlisting}
+
+После были созданы страничных компоненты, которые будут вложены в главный компонент --- App.
+
+С помощью 
+
+<style src="../css/Events.css"></style>
+
+есть возможность подключения таблиц стилей в конкретный компонент.
+
+С помощью команды npm build --- скомпилируем клиентскую часть, в особом режиме --- production mode. Данная команда собирает все скрипты в один файл и оптимизирует их, удаляя лишние символы и обфусифицирует код --- заменяет понятные программисту переменные вроде showButton на ab, тем самым защищая код от неправомерного использования \cite{Webpack}.
+
+
+
+\subsection {Развертка приложения на сервере}
+Запустим команду gradle build \cite{Gradle}.
+Она соберет все зависимости для backend части, а также уже собранную клиентскую часть в один файл-пакет meetAndGreet-0.0.1-SNAPSHOT.jar.
+
+После этого, необходимо запустить файл, для убеждения в том, что приложение работает. Запускается оно с помощью команды (разработка ведется под ОС Windows, поэтому команда именно такая).
+\begin{lstlisting}
+ C:\ProgramData\Oracle\Java\javapath\java.exe -jar meetAndGreet-0.0.1-SNAPSHOT.jar
+ \end{lstlisting}
+ 
+ Приложение запуститься на 80 порту, что весьма удобно --- не нужно указывать порт в адресной строке.
+ 
+ Далее необходимо подключиться к серверу по протоколу ssh и скопировать файл приложения в рабочую директорию. Если просто запустить такую команду
+ 
+ java -jar meetgreet.jar
+ 
+то после закрытия консоли и отключения от сервера, приложение перестанет работать. Необходимо создать bash скрипт, в котором не только будет запуск приложения, но и логгирование в файл. 
+
+Содержимое bash скрипта
+\begin{lstlisting}
+#!/bin/bash
+java -jar meetgreet.jar > log.txt
+\end{lstlisting}
+
+После запуска этого скрипта необходимо отключиться от сервера и проверить доступность приложения с помощью браузеров по IP адресу сервера.
+
+Ниже на Рисунке~\ref{ris:pc} и Рисунке~\ref{ris:mobile} приведены скриншоты приложения.
+
+\begin{figure}[h]
+\center{\includegraphics[width=1\linewidth]{PC.png}}
+\caption{Приложение при просмотре с настольных компьютеров.}
+\label{ris:pc}
+\end{figure}
+
+\begin{figure}[h]
+\center{\includegraphics[width=0.32\linewidth]{Mobile.png}}
+\caption{Приложение при просмотре с мобильных устройств.}
+\label{ris:mobile}
+\end{figure}
+
+%на рисунках 1 и 2 скриншоты приложения
+ 
+
+\conclusion 
+При выполнении данной курсовой работы, были рассмотрены современные Web технологии для построения SPA. Было разработано приложение с адаптивной версткой которое работает одинаково хорошо как на мобильных устройствах, так и на настольных. Исходный код приложения доступен в репозитории GitHub: 
+
+https://github.com/vikegart/meetAndGreet
+
+В дальнейшем планируется добавить такие действия со встречами как обновление и удаление. Также планируется изучить Spring Security и добавить авторизацию.
+\begin{thebibliography}{99}
+  \bibitem{LongPoll} Bots Long Poll API [Электронный ресурс]: URL: https://vk.com/dev/bots\_longpoll (Дата обращения: 18.02.2019) Загл. с экрана. Яз. англ;
+  \bibitem{VKBots} API для чат-ботов [Электронный ресурс]: URL: https://vk.com/dev/bots\_docs (Дата обращения: 18.02.2019) Загл. с экрана. Яз. англ;
+\end{thebibliography}
+
+
+\end{document}
