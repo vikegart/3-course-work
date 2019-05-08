@@ -245,22 +245,9 @@ Callback API --- согласно официальной документации,
     "description": "konnor testing",
     "main": "konnor.js",
     "dependencies": {
-      "apiai": "^4.0.3",
-      "axios": "^0.18.0",
-      "cheerio": "^1.0.0-rc.2",
-      "dialogflow": "^0.6.0",
-      "moment-timezone": "^0.5.21",
-      "needle": "^2.2.4",
       "node-vk-bot": "1.2.1",
-      "request": "^2.88.0",
-      "request-promise": "^4.2.2",
       "util": "^0.11.0",
       "vk-node-sdk": "^0.1.8",
-      "xml2js": "^0.4.19",
-      "yandex-speech": "0.0.13"
-    },
-    "devDependencies": {
-      "lyric-get": "^1.0.3"
     },
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -270,9 +257,84 @@ Callback API --- согласно официальной документации,
   }
 \end{lstlisting}
 
-Для запуска клиентской части требуется ввести в консоль команду npm start\cite{Webpack}.
+Далее, был создан главный js файл --- "konnor.js",
+в котором необходимо с помощью библиотеки "vk-node-sdk" подключиться к серверверу Вконтакте для приёма уведомлений.
 
-Далее, был создан главный js файл --- точка входа в SPA приложение, в котором необходимо настроить маршруты --- routings.
+Для этого, создал файл с константами, где будут указаны токены для работы с ботом, а также
+ID сообщества, от чьего имени будет отвечать бот. Разнесение архитектуры приложения на несколько файлов
+упростит его поддежку в дальнейшем и поможет делать важные изменения без затрагивания большого количства
+кода.
+
+Вот как выглядит данный файл сейчас:
+
+\begin{lstlisting}
+  const vkGroupFullRight = 'group on vk token fith full rights and long-poll';
+  const groupId = 000;
+
+  module.exports = {
+      vkGroupFullRight: vkGroupFullRight,
+      groupId: groupId,
+  }
+\end{lstlisting}
+
+В главном файле, импортируем этот файл и инициализируем бота.
+
+\begin{lstlisting}
+
+const DEBUG_MODE = require('./konnor_config');
+const util = require('util');
+const { Bot } = require('node-vk-bot');
+
+//don't forget to add tokens in file and rename him
+const TOKENS = require('./secret_tokens');
+
+const regName = /коннор|connor|конор|андроид/i;
+
+
+const debugConsole = (variable, depth) => {
+    DEBUG_MODE && console.log('debug: ' + util.inspect(variable, false, depth = 8));
+}
+
+const bot = new Bot({
+    token: TOKENS.vkGroupFullRight,
+    group_id: TOKENS.groupId,
+}).start()
+
+console.log('bot started');
+
+
+bot.on('poll-error', error => {
+    console.error('error occurred on a working with the Long Poll server ' +
+        `(${util.inspect(error)})`)
+})
+
+\end{lstlisting}
+
+Для запуска бота введем команду "node ./konnor.js". Бот запущен!
+
+Прежде чем писать реакцию на команды, в соотвествии с принципами "Банды четырех" \cite{Gang} --- 
+выносим каждую команду в отдельный модуль и делаем "горячее подключение" модулей. То есть не требуется 
+переписывать общую логику бота, при добавлении новой команды в будущем.
+
+Каждая команда - это объект, вида:
+\begin{lstlisting}
+  const имя_команды = {
+    callName: 'триггер срабатывания, может быть регулярным выражением',
+    action: (bot, message, TOKENS) => {
+      дейсвие - что она делает
+    }
+}
+\end{lstlisting}
+
+Также, подключение команд реализуем в отдельном файле, дабы не трогать основной.
+
+Сама же логика бота - на какую команду он среагирует будет осуществляться
+следующим образом --- бот получает список всех доступных команд и входящее сообщение.
+Далее простым циклом проходясь по списку команд, он сверяет "триггер" (регулярное выражение)
+каждой команды с входным сообщением. И если регулярное выражение проходит (результат true),
+то бот исполняет нужную команду и передаёт свой ответ на отправку.
+
+Данный паттерн называется "Стратегия" и очень сильно экономит ресуры и облегчает добваление новых команд.
 
 Маршрутов четыре --- в приложении четыре страницы:
 
@@ -493,6 +555,7 @@ https://github.com/vikegart/meetAndGreet
 \begin{thebibliography}{99}
   \bibitem{LongPoll} Bots Long Poll API [Электронный ресурс]: URL: https://vk.com/dev/bots\_longpoll (Дата обращения: 18.02.2019) Загл. с экрана. Яз. англ;
   \bibitem{VKBots} API для чат-ботов [Электронный ресурс]: URL: https://vk.com/dev/bots\_docs (Дата обращения: 18.02.2019) Загл. с экрана. Яз. англ;
+  \bibitem{Gang} Приемы объектно-ориентированного проектирования. Паттерны проектирования.  Влиссидес Джон , Джонсон Р. , Хелм Ричард , Гамма Эрих Яз. англ стр [50-120];
 \end{thebibliography}
 
 

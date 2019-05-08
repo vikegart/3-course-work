@@ -6,6 +6,6 @@
 \contentsline {section}{\numberline {4 }\IeC {\CYRR }\IeC {\cyra }\IeC {\cyrz }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrch }\IeC {\cyra }\IeC {\cyrt } \IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyra }}{8}{section.4}% 
 \contentsline {subsection}{\numberline {4.1 }\IeC {\cyrch }\IeC {\cyra }\IeC {\cyrt }-\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }}{8}{subsection.4.1}% 
 \contentsline {subsection}{\numberline {4.2 }\IeC {\CYRR }\IeC {\cyra }\IeC {\cyrz }\IeC {\cyrv }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyrt }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrl }\IeC {\cyro }\IeC {\cyrzh }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyrn }\IeC {\cyra } \IeC {\cyrs }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyrv }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyre }}{14}{subsection.4.2}% 
-\contentsline {section}{\cyrillictext \CYRZ \CYRA \CYRK \CYRL \CYRYU \CYRCH \CYRE \CYRN \CYRI \CYRE }{16}{figure.caption.2}% 
-\contentsline {section}{\cyrillictext \CYRS \CYRP \CYRI \CYRS \CYRO \CYRK \ \CYRI \CYRS \CYRP \CYRO \CYRL \CYRSFTSN \CYRZ \CYRO \CYRV \CYRA \CYRN \CYRN \CYRERY \CYRH \ \CYRI \CYRS \CYRT \CYRO \CYRCH \CYRN \CYRI \CYRK \CYRO \CYRV }{17}{figure.caption.2}% 
+\contentsline {section}{\cyrillictext \CYRZ \CYRA \CYRK \CYRL \CYRYU \CYRCH \CYRE \CYRN \CYRI \CYRE }{17}{figure.caption.2}% 
+\contentsline {section}{\cyrillictext \CYRS \CYRP \CYRI \CYRS \CYRO \CYRK \ \CYRI \CYRS \CYRP \CYRO \CYRL \CYRSFTSN \CYRZ \CYRO \CYRV \CYRA \CYRN \CYRN \CYRERY \CYRH \ \CYRI \CYRS \CYRT \CYRO \CYRCH \CYRN \CYRI \CYRK \CYRO \CYRV }{18}{figure.caption.2}% 
 \contentsfinish 
