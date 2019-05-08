@@ -265,3 +265,7 @@ TSWLatexianTemp*
 *.fdb_latexmk
 *.synctex.gz
 Ekgart.log
+Ekgart.aux
+Ekgart.log
+Ekgart.toc
+Ekgart.synctex.gz
